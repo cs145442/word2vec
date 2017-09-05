@@ -99,8 +99,21 @@ def find_closest(word_index, vectors):
     return min_index
 
 
-import sklearn
-vectors = sklearn.preprocessing.normalize(vectors, norm='l2')
+from sklearn.manifold import TSNE
+
+model = TSNE(n_components=2, random_state=0)
+np.set_printoptions(suppress=True)
+vectors = model.fit_transform(vectors) 
+
+from sklearn import preprocessing
+
+normalizer = preprocessing.Normalizer()
+vectors =  normalizer.fit_transform(vectors, 'l2')
+
+print(vectors)
+
+import matplotlib.pyplot as plt
+
 
 fig, ax = plt.subplots()
 print(words)
