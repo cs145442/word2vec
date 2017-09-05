@@ -85,6 +85,9 @@ for _ in range(n_iters):
 
 vectors = sess.run(W1 + b1)
 
+def euclidean_dist(vec1, vec2):
+    return np.sqrt(np.sum((vec1-vec2)**2))
+
 def find_closest(word_index, vectors):
     min_dist = 10000 # to act like positive infinity
     min_index = -1
